@@ -1,0 +1,10 @@
+src/
+scripts/
+tests/
+*.config.js
+*.config.ts
+tsconfig.json
+.eslintrc.js
+.prettierrc
+node_modules/
+.git/
