@@ -18,5 +18,5 @@ By using this package, you agree to:
 ## Takedown Policy
 
 If you are a trademark owner and believe a logo is being used improperly,
-please open an issue at [github.com/mattwhite8/exotic-car-logos/issues](https://github.com/mattwhite8/exotic-car-logos/issues)
+please open an issue at [github.com/mattwhite8/react-car-logo/issues](https://github.com/mattwhite8/react-car-logo/issues)
 and we will remove the relevant content promptly.

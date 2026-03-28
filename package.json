@@ -63,7 +63,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mattwhite8/exotic-car-logos.git"
+    "url": "git+https://github.com/mattwhite8/react-car-logo.git"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.3",
