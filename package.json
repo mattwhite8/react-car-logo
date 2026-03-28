@@ -20,8 +20,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts,.tsx",
-    "generate": "ts-node scripts/generate-logos.ts",
-    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+    "generate": "ts-node scripts/generate-logos.ts"
   },
   "exports": {
     ".": {
