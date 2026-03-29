@@ -1,6 +1,6 @@
 # react-car-logo
 
-PNG logo components for the top 50 exotic & luxury car brands. React & React Native compatible. Tree-shakeable. TypeScript.
+PNG logo components for 40 exotic & luxury car brands. One component, pass the make as a slug. React & React Native compatible. TypeScript.
 
 ## Installation
 
@@ -11,63 +11,63 @@ npm install react-car-logo
 ## Quick Start
 
 ```tsx
-import { Ferrari, McLaren } from 'react-car-logo';
+import { ReactCarLogo } from 'react-car-logo';
 
-// Or tree-shaken single import:
-import Ferrari from 'react-car-logo/logos/Ferrari';
-
-<Ferrari size="md" />           // 160px (default)
-<Ferrari size="sm" />           // 80px
-<Ferrari size="lg" />           // 320px
-<Ferrari width={240} />         // custom override
-<Ferrari alt="Ferrari Logo" />  // accessible alt
+<ReactCarLogo name="ferrari" />              // 160px (default)
+<ReactCarLogo name="ferrari" size="icon" />   // 32px
+<ReactCarLogo name="ferrari" size="sm" />     // 80px
+<ReactCarLogo name="ferrari" size="lg" />     // 320px
+<ReactCarLogo name="ferrari" width={240} />   // custom override
+<ReactCarLogo name="ferrari" alt="Logo" />    // accessible alt
 ```
 
 ## Size Presets
 
-| Prop value  | Renders at | Fetches PNG | Best for                |
-| ----------- | ---------- | ----------- | ----------------------- |
-| `size="sm"` | 80px       | 160px (2x)  | Nav, tables, thumbnails |
-| `size="md"` | 160px      | 320px (2x)  | Cards, lists (default)  |
-| `size="lg"` | 320px      | 640px (2x)  | Hero, detail views      |
-| `width={N}` | Npx        | 640px       | Any custom size         |
+| Prop value    | Renders at | Best for                     |
+| ------------- | ---------- | ---------------------------- |
+| `size="icon"` | 32px       | Inline icons, small UI       |
+| `size="sm"`   | 80px       | Nav, tables, thumbnails      |
+| `size="md"`   | 160px      | Cards, lists (default)       |
+| `size="lg"`   | 320px      | Hero, detail views           |
+| `width={N}`   | Npx        | Any custom size              |
 
 ## Props
 
-| Prop        | Type                    | Default    | Description                                      |
-| ----------- | ----------------------- | ---------- | ------------------------------------------------ |
-| `size`      | `'sm' \| 'md' \| 'lg'` | `'md'`     | Size preset                                      |
-| `width`     | `number`                | --         | Custom width in px (overrides size)              |
-| `height`    | `number`                | --         | Custom height in px (overrides size)             |
-| `alt`       | `string`                | brand name | Accessible alt text                              |
-| `loading`   | `'lazy' \| 'eager'`    | `'lazy'`   | Native loading strategy                          |
-| `className` | `string`                | --         | CSS class(es)                                    |
-| `style`     | `CSSProperties`         | --         | Inline styles (merged with `objectFit: contain`) |
-| `...rest`   | `ImgHTMLAttributes`     | --         | Any standard `<img>` attribute                   |
+| Prop        | Type                                | Default    | Description                                      |
+| ----------- | ----------------------------------- | ---------- | ------------------------------------------------ |
+| `name`      | `BrandName`                         | (required) | Brand slug, e.g. `"ferrari"`, `"rolls-royce"`    |
+| `size`      | `'icon' \| 'sm' \| 'md' \| 'lg'`   | `'md'`     | Size preset                                      |
+| `width`     | `number`                            | --         | Custom width in px (overrides size)              |
+| `height`    | `number`                            | --         | Custom height in px (overrides size)             |
+| `alt`       | `string`                            | brand name | Accessible alt text                              |
+| `loading`   | `'lazy' \| 'eager'`                | `'lazy'`   | Native loading strategy                          |
+| `className` | `string`                            | --         | CSS class(es)                                    |
+| `style`     | `CSSProperties`                     | --         | Inline styles (merged with `objectFit: contain`) |
+| `...rest`   | `ImgHTMLAttributes`                 | --         | Any standard `<img>` attribute                   |
 
 ## Brand Metadata
 
-Each brand exports a `meta` object alongside the component:
+Access metadata for any brand via the `brands` registry:
 
 ```tsx
-import { FerrariMeta } from 'react-car-logo';
+import { brands } from 'react-car-logo';
 
-console.log(FerrariMeta.title);   // "Ferrari"
-console.log(FerrariMeta.country); // "Italy"
-console.log(FerrariMeta.hex);     // "CD212A"
-console.log(FerrariMeta.founded); // 1939
+console.log(brands.ferrari.title);   // "Ferrari"
+console.log(brands.ferrari.country); // "Italy"
+console.log(brands.ferrari.hex);     // "CD212A"
+console.log(brands.ferrari.founded); // 1939
 ```
 
 ## Dynamic Rendering
 
-For rendering logos from string keys:
+Pass any slug string to render logos dynamically -- perfect for data-driven UIs:
 
 ```tsx
-import * as CarLogos from 'react-car-logo/allLogos';
+import { ReactCarLogo } from 'react-car-logo';
+import type { BrandName } from 'react-car-logo';
 
-const brandName = 'Ferrari';
-const Logo = CarLogos[brandName as keyof typeof CarLogos];
-<Logo size="md" />;
+const make = 'ferrari' as BrandName;
+<ReactCarLogo name={make} size="md" />;
 ```
 
 ## React Native
@@ -76,26 +76,26 @@ Use the metadata `pngUrl` with React Native's `Image`:
 
 ```tsx
 import { Image } from 'react-native';
-import { FerrariMeta } from 'react-car-logo';
+import { brands } from 'react-car-logo';
 
-<Image source={{ uri: FerrariMeta.pngUrl }} style={{ width: 160, height: 160 }} />;
+<Image source={{ uri: brands.ferrari.pngUrl }} style={{ width: 160, height: 160 }} />;
 ```
 
-## All 50 Brands
+## All 40 Brands
 
-**Italian:** Ferrari, Lamborghini, Maserati, Alfa Romeo, Pagani, De Tomaso, Pininfarina, Dallara, Abarth, Italdesign
+**Italian:** Ferrari, Lamborghini, Maserati, Alfa Romeo, Pagani, De Tomaso, Pininfarina, Abarth
 
-**German:** Porsche, BMW, Mercedes-AMG, Brabus, Audi, Maybach, RUF, Gumpert, Apollo
+**German:** Porsche, BMW, Mercedes-AMG, Brabus, Audi, Maybach, Gumpert
 
-**British:** McLaren, Bentley, Rolls-Royce, Aston Martin, Lotus, Jaguar, Noble, TVR, Radical, Arash, Lister
+**British:** McLaren, Bentley, Rolls-Royce, Aston Martin, Lotus, Jaguar, TVR, Radical, Arash
 
 **French:** Bugatti, Alpine
 
-**American:** Shelby, Dodge, Chevrolet, Ford, Saleen, Hennessey, SSC, Mosler, Czinger, Glickenhaus
+**American:** Shelby, Dodge, Chevrolet, Ford, Saleen, Hennessey, SSC, Mosler
 
 **Swedish:** Koenigsegg, Polestar
 
-**Other:** Rimac (Croatia), Zenvo (Denmark), Spyker (Netherlands), W Motors (UAE), Lykan (UAE), Icona (Italy)
+**Other:** Rimac (Croatia), Zenvo (Denmark), Spyker (Netherlands), W Motors (UAE)
 
 ## Legal
 
