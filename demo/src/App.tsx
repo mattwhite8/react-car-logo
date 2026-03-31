@@ -7,7 +7,7 @@ const ALL_BRANDS = Object.entries(brands).map(([slug, meta]) => ({
   meta,
 }));
 
-const REGIONS = ["All", "Italian", "German", "British", "French", "American", "Swedish", "Other"];
+const REGIONS = ["All", "Italian", "German", "British", "French", "American", "Japanese", "Korean", "Spanish", "Swedish", "Other"];
 
 export default function App() {
   const [size, setSize] = useState<LogoSize>("md");

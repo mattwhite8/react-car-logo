@@ -4,8 +4,8 @@ import { SIZE_MAP } from "../src/types";
 describe("brands registry", () => {
   const entries = Object.entries(brands);
 
-  it("has exactly 40 brands", () => {
-    expect(entries.length).toBe(40);
+  it("has exactly 100 brands", () => {
+    expect(entries.length).toBe(100);
   });
 
   entries.forEach(([slug, meta]) => {
